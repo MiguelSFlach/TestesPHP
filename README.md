@@ -1,73 +1,73 @@
-# TestesPHP
+📦 Testes de Funções em PHP
+Este repositório contém testes unitários para diversas funções básicas implementadas na classe Funcoes. Os testes foram criados utilizando PHPUnit, com foco em verificar o comportamento esperado das funções, identificar falhas e garantir segurança em futuras evoluções do código.
 
+✅ Funções Testadas
+1. isEven(int $numero): bool
+Verifica se um número é par.
 
-Testando as funções
+php
+Copiar
+Editar
+$this->assertTrue(Funcoes::isEven(4));
+$this->assertFalse(Funcoes::isEven(5));
+2. factorial(int $numero): int
+Calcula o fatorial de um número. Lança exceção se o valor for negativo.
 
-Teste função 1
+php
+Copiar
+Editar
+$this->assertEquals(120, Funcoes::factorial(5));
+$this->assertEquals(1, Funcoes::factorial(0));
+$this->expectException(InvalidArgumentException::class);
+Funcoes::factorial(-1);
+3. isPalindrome(string $texto): bool
+Verifica se uma palavra ou frase é um palíndromo (ignora espaços e pontuações).
 
-public function testIsEven()
-{
-    // Teste com comportamento esperado
-    $this->assertTrue(Funcoes::isEven(4));
-    $this->assertFalse(Funcoes::isEven(5));
-}
+php
+Copiar
+Editar
+$this->assertTrue(Funcoes::isPalindrome("radar"));
+$this->assertFalse(Funcoes::isPalindrome("hello"));
+$this->assertTrue(Funcoes::isPalindrome("A man, a plan, a canal: Panama"));
+4. fahrenheitToCelsius(float $f): float
+Converte de Fahrenheit para Celsius.
 
-Teste função 2
+php
+Copiar
+Editar
+$this->assertEquals(0, Funcoes::fahrenheitToCelsius(32));
+$this->assertEquals(100, Funcoes::fahrenheitToCelsius(212));
+5. calculateDiscount(float $valor, float $percentual): float
+Calcula o valor com desconto. Lança exceção se o valor for negativo.
 
-public function testFactorial()
-{
-    // Teste com comportamento esperado
-    $this->assertEquals(120, Funcoes::factorial(5));
-    $this->assertEquals(1, Funcoes::factorial(0));
-    
-    // Teste com entrada inválida
-    $this->expectException(InvalidArgumentException::class);
-    Funcoes::factorial(-1); // Deve lançar exceção
-}
+php
+Copiar
+Editar
+$this->assertEquals(90, Funcoes::calculateDiscount(100, 10));
+$this->assertEquals(75, Funcoes::calculateDiscount(100, 25));
+$this->expectException(InvalidArgumentException::class);
+Funcoes::calculateDiscount(-100, 10);
+🔍 Análise dos Testes
+Os testes ajudaram a identificar comportamentos inesperados?
+Sim. Por exemplo, ao testar factorial(-1), a exceção mostra que entradas inválidas estão sendo tratadas corretamente.
 
-Teste função 3
+Algum teste falhou? Por quê?
+Sim, erros podem ocorrer por lógica incompleta ou falta de tratamento de casos extremos. Exemplo: isPalindrome() pode falhar se a limpeza de caracteres especiais ou espaços não for feita corretamente.
 
-public function testIsPalindrome()
-{
-    // Teste com comportamento esperado
-    $this->assertTrue(Funcoes::isPalindrome("radar"));
-    $this->assertFalse(Funcoes::isPalindrome("hello"));
-    
-    // Teste com entrada de borda
-    $this->assertTrue(Funcoes::isPalindrome("A man, a plan, a canal: Panama")); // Ignorando caracteres especiais e maiúsculas
-}
+Como os testes ajudam na evolução do código?
+Os testes funcionam como uma rede de segurança. Permitem refatorar funções com confiança, já que qualquer mudança que afete o comportamento esperado será rapidamente identificada. Isso facilita a manutenção, reduz regressões e aumenta a estabilidade do sistema.
 
+🧪 Requisitos
+PHP 8+
 
-Teste função 4
+PHPUnit
 
-public function testFahrenheitToCelsius()
-{
-    // Teste com comportamento esperado
-    $this->assertEquals(0, Funcoes::fahrenheitToCelsius(32));
-    $this->assertEquals(100, Funcoes::fahrenheitToCelsius(212));
-}
-
-
-Teste função 5
-
-public function testCalculateDiscount()
-{
-    // Teste com comportamento esperado
-    $this->assertEquals(90, Funcoes::calculateDiscount(100, 10));
-    $this->assertEquals(75, Funcoes::calculateDiscount(100, 25));
-    
-    // Teste com entrada inválida
-    $this->expectException(InvalidArgumentException::class);
-    Funcoes::calculateDiscount(-100, 10); // Deve lançar exceção
-}
-
-
-
-1- Os testes ajudaram a identificar comportamentos inesperados?
-Sim, os testes revelam erros que poderiam passar despercebidos. Exemplo: ao testar , a exceção  confirma que entradas negativas são tratadas adequadamente.
-
-2- Algum teste falhou? Por quê?
-Sim, falhas podem ocorrer por lógica incompleta ou casos não previstos. Exemplo:  pode falhar se o regex não limpar adequadamente caracteres especiais, como  ou espaços, antes de verificar o palíndromo
-
-3- Como os testes podem ajudar na evolução segura do código?
-Os testes atuam como uma rede de segurança ao realizar mudanças no código. Refatorações, como ajustar  para uma lógica diferente, podem ser feitas com confiança, pois os testes alertam se a funcionalidade existente foi comprometida. Além disso, novas funcionalidades podem ser adicionadas com facilidade enquanto os testes existentes garantem que o código antigo permanece estável. Isso reduz regressões e melhora a confiabilidade do sistema
+bash
+Copiar
+Editar
+composer require --dev phpunit/phpunit
+🚀 Executando os testes
+bash
+Copiar
+Editar
+./vendor/bin/phpunit tests
