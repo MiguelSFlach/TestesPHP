@@ -114,4 +114,4 @@ README.md
 
 ---
 
-Feito com 💻 e ☕
+Feito pelos alunos Felipe Eduardo Bohnen, Miguel Schneiders Flach e Roney Bieger Anshau
